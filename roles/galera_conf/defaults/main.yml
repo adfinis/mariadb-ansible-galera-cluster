@@ -1,5 +1,6 @@
 ---
 galera_server_id: 1337
 galera_wsrep_cluster_name: ansible_galera_cluster
+bootstrapped: no
 galera_sst_user: galera
 galera_sst_pass: galera
