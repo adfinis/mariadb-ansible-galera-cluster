@@ -1,0 +1,22 @@
+---
+- name: Install mysql-python to manage mysql users
+  yum: name=MySQL-python state=present
+
+- name: Update MySQL root password for all root accounts
+  mysql_user: name=root host={{ item }} password={{ mysql_root_password }}
+    check_implicit_admin=yes state=present
+  with_items:
+    - 127.0.0.1
+    - ::1
+    - localhost
+
+- name: Install .my.cnf for root
+  template: src=mysql/auth.my.cnf.j2 dest=~/.my.cnf
+
+- name: Remove anonymous users from MySQL
+  mysql_user: name='' host={{ item }} state=absent
+  with_items:
+    - localhost
+
+- name: Remove the test DB
+  mysql_db: name=test state=absent

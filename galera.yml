@@ -1,0 +1,8 @@
+---
+- hosts: galera_db
+  roles:
+    - { role: security, tags: [ 'setup' ] }
+    - { role: galera_repos, tags: [ 'setup', 'packages' ] }
+    - { role: galera_packages, tags: [ 'setup', 'packages' ] }
+    - { role: galera_conf, tags: [ 'config' ] }
+    - { role: galera_privs, tags: [ 'auth' ] }

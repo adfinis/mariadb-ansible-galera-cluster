@@ -1,0 +1,3 @@
+---
+galera_server_id: 1337
+galera_wsrep_cluster_name: ansible_galera_cluster

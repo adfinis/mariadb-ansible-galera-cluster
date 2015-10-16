@@ -1,0 +1,14 @@
+---
+- name: Disable SELinux
+  lineinfile: dest=/etc/selinux/config regexp=^SELINUX= line=SELINUX=permissive
+
+- name: Open firewall for external access to MySQL
+  firewalld: service=mysql permanent=true immediate=true state=enabled
+
+- name: Open Galera ports on firewall
+  firewalld: port={{ item }} permanent=true immediate=true state=enabled
+  with_items:
+    - 4444/tcp
+    - 4567/tcp
+    - 4567/udp
+    - 4568/tcp

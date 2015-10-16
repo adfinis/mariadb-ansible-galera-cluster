@@ -1,0 +1,40 @@
+configuration management for MariaDB Galera cluster
+===================================================
+
+These roles allow you to automatically setup a MariaDB Galera cluster with sane
+default settings.
+
+These roles are currently only tested for RHEL/CentOS 7, but most tasks can be
+reused for Debian based distributions.
+
+Installing requirements
+-----------------------
+
+To install the required packages and configure SELinux and the firewall you can
+run only the tasks tagged with ``setup``
+
+    ansible-playbook -i galera.hosts galera.yml --tags setup
+
+Configure MariaDB Galera cluster
+--------------------------------
+
+To run all further tasks to configure MariaDB Galera cluster and add the
+required user for the **S**tate **S**napshot **T**ransfer (SST) either skip the
+tasks tagged ``setup`` or run the tags ``config`` or ``auth`` directly.
+
+    ansible-playbook -i galera.hosts galera.yml --skip-tags setup
+
+Bootstrapping MariaDB Galera cluster
+------------------------------------
+
+Now everything is prepared and all that is left to do is to boostrap the
+cluster. Choose any node from you cluster and run these commands
+
+    service mysql stop
+    service mysql bootstrap
+
+The node you selected will now be started in bootstrap mode with
+``wsrep_cluster_address`` set to ``gcomm://`` and is the first node in your
+cluster. When you restart mysql on any other node it will query all addresses
+configured in ``wsrep_cluster_address`` for an available node and initiate the
+initial SST.

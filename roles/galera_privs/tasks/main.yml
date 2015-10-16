@@ -1,0 +1,6 @@
+---
+- name: Add Galera SST user
+  mysql_user: name={{ galera_sst_user }} host="{{ item }}"
+    password={{ galera_sst_pass }} priv="*.*:ALL" append_privs=yes
+  with_items:
+    - "%"

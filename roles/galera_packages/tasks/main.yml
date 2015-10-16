@@ -1,0 +1,14 @@
+---
+- name: Install MariaDB server packages
+  yum: name={{ item }} state=present
+  with_items:
+    - MariaDB-client
+    - MariaDB-server
+    - galera
+
+- name: Install Percona tool packages
+  yum: name={{ item }} state=present
+  with_items:
+    - https://www.percona.com/downloads/percona-toolkit/2.2.15/RPM/percona-toolkit-2.2.15-2.noarch.rpm
+    - https://www.percona.com/downloads/XtraBackup/Percona-XtraBackup-2.2.12/binary/redhat/7/x86_64/percona-xtrabackup-2.2.12-1.el7.x86_64.rpm
+    - socat

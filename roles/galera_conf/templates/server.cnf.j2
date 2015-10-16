@@ -1,0 +1,38 @@
+# this is only for the mysqld standalone daemon
+[mysqld]
+server-id={{ galera_server_id }}
+bind-address=0.0.0.0
+
+#
+# * Galera-related settings
+#
+[galera]
+
+# Mandatory settings
+wsrep_provider=/usr/lib64/galera/libgalera_smm.so
+wsrep_cluster_address="gcomm://
+{%- for host in groups['galera_db'] -%}
+{{ hostvars[host].ansible_eth1.ipv4.address }}
+{%- if not loop.last -%},{%- endif -%}
+{%- endfor -%}"
+wsrep_cluster_name={{ galera_wsrep_cluster_name }}
+wsrep_node_name={{ ansible_hostname }}
+wsrep_node_address={{ ansible_eth1.ipv4.address }}
+binlog_format=row
+default_storage_engine=InnoDB
+innodb_autoinc_lock_mode=2
+
+# SST settings
+wsrep_sst_method=xtrabackup-v2
+wsrep_sst_receive_address={{ ansible_eth1.ipv4.address }}
+wsrep_sst_auth={{ galera_sst_user }}:{{ galera_sst_pass }}
+# needed since 10.1
+wsrep_on=ON
+
+#
+# Optional setting
+#
+innodb_buffer_pool_size=200M
+innodb_file_per_table=1
+wsrep_slave_threads=1
+innodb_flush_log_at_trx_commit=2
