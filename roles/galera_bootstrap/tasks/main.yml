@@ -1,0 +1,8 @@
+---
+- name: Bootstrap first MariaDB Galera cluster node
+  shell: service mysql stop && service mysql bootstrap
+  when: groups['galera_cluster'].index(inventory_hostname) == 0
+
+- name: Restart the other MariaDB Galera cluster nodes
+  service: name=mysql state=restarted
+  when: groups['galera_cluster'].index(inventory_hostname) != 0
