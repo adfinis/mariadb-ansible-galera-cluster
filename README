@@ -27,14 +27,21 @@ tasks tagged ``setup`` or run the tags ``config`` or ``auth`` directly.
 Bootstrapping MariaDB Galera cluster
 ------------------------------------
 
-Now everything is prepared and all that is left to do is to boostrap the
-cluster. Choose any node from you cluster and run these commands
+Bootstrapping the cluster can be done using a playbook dedicated for
+bootstrapping the MariaDB Galera cluster called galera_bootstrap.yml
 
-    service mysql stop
-    service mysql bootstrap
+    ansible-playbook -i galera.hosts galera_bootstrap.yml
 
-The node you selected will now be started in bootstrap mode with
-``wsrep_cluster_address`` set to ``gcomm://`` and is the first node in your
-cluster. When you restart mysql on any other node it will query all addresses
-configured in ``wsrep_cluster_address`` for an available node and initiate the
-initial SST.
+It uses the first node in the group ``galera_cluster`` to bootstrap the cluster.
+
+Rolling MariaDB Galera cluster updates
+--------------------------------------
+
+The role ``galera_conf`` is set up to allow rolling updates of the configuration
+of the Galera cluster. When the variable ``bootstrapped`` is set to ``yes`` the
+``mysql`` service is restarted after a change of the configuration. It is
+important to note that the playbook contains the keyword ``serial: 1``, meaning
+that the configuration is applied one node at a time so that the will never lose
+quorum in the process of applying the new configuration.
+
+    ansible-playbook -i galera.hosts galera_rolling_update.yml
