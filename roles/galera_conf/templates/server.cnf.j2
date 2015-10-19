@@ -11,7 +11,7 @@ bind-address=0.0.0.0
 # Mandatory settings
 wsrep_provider=/usr/lib64/galera/libgalera_smm.so
 wsrep_cluster_address="gcomm://
-{%- for host in groups['galera_db'] -%}
+{%- for host in groups['galera_cluster'] -%}
 {{ hostvars[host].ansible_eth1.ipv4.address }}
 {%- if not loop.last -%},{%- endif -%}
 {%- endfor -%}"

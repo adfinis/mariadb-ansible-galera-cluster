@@ -1,4 +1,4 @@
-[galera_db]
+[galera_cluster]
 galera-db-01 ansible_ssh_user=root
 galera-db-02 ansible_ssh_user=root
 galera-db-03 ansible_ssh_user=root

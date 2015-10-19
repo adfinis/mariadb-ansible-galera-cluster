@@ -1,5 +1,5 @@
 ---
-- hosts: galera_db
+- hosts: galera_cluster
   roles:
     - { role: security, tags: [ 'setup' ] }
     - { role: galera_repos, tags: [ 'setup', 'packages' ] }
