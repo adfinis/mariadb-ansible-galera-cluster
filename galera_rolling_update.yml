@@ -1,5 +1,5 @@
 ---
 - hosts: galera_cluster
-  serial: 1
+  serial: 49%
   roles:
     - { role: galera_conf, bootstrapped: yes, tags: [ 'config' ] }
