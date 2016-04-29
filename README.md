@@ -5,7 +5,31 @@ These roles allow you to automatically setup a MariaDB Galera cluster with sane
 default settings.
 
 These roles are currently only tested for RHEL/CentOS 7, but most tasks can be
-reused for Debian based distributions.
+reused for Debian or SUSE based distributions.
+
+Prerequisites
+-------------
+
+The machine from which the playbook is being run needs to have Ansible >= 2.0
+installed. For detailed information how to obtain current packages for your
+distribution of choice have a look at the
+[Ansible documentation](https://docs.ansible.com/ansible/intro_installation.html).
+
+As we're accessing information from a group of hosts within these playbooks we
+need to have fact caching enabled in Ansible. To, for example, cache using json
+files in you homedirectory you would add the following lines to
+``/etc/ansible/ansible.cfg``:
+
+```
+[defaults]
+gathering = smart
+fact_caching = jsonfile
+fact_caching_connection = ~/.ansible/cache
+```
+
+For more information about other cache mechanisms have a look at the
+[Ansible documentation](https://docs.ansible.com/ansible/playbooks_variables.html#fact-caching)
+regarding fact-caching.
 
 Installing requirements
 -----------------------
