@@ -1,0 +1,5 @@
+---
+percona_toolkit_version: "2.2.17"
+percona_toolkit_package_version: "{{ percona_toolkit_version }}-1"
+percona_xtrabackup_version: "2.3.4"
+percona_xtrabackup_package_version: "{{ percona_xtrabackup_version }}-1"
