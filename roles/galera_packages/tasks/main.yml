@@ -9,6 +9,5 @@
 - name: Install Percona tool packages
   yum: name={{ item }} state=present
   with_items:
-    - https://www.percona.com/downloads/percona-toolkit/{{ percona_toolkit_version }}/RPM/percona-toolkit-{{ percona_toolkit_package_version }}.noarch.rpm
-    - https://www.percona.com/downloads/XtraBackup/Percona-XtraBackup-{{ percona_xtrabackup_version }}/binary/redhat/7/x86_64/percona-xtrabackup-{{ percona_xtrabackup_package_version }}.el7.x86_64.rpm
+    - percona-xtrabackup
     - socat

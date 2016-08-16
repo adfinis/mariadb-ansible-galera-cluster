@@ -3,5 +3,8 @@
   template: src=yum.repos.d/mariadb.repo.j2 dest=/etc/yum.repos.d/mariadb.repo
     owner=root group=root mode=0644
 
+- name: Add Percona repo
+  yum: name=http://www.percona.com/downloads/percona-release/redhat/{{ percona_release_package_version }}/percona-release-{{ percona_release_package_version }}.noarch.rpm
+
 - name: Add EPEL repo
   yum: name=epel-release state=present
