@@ -63,7 +63,7 @@ Rolling MariaDB Galera cluster updates
 
 The role ``galera_conf`` is set up to allow rolling updates of the configuration
 of the Galera cluster. When the variable ``bootstrapped`` is set to ``yes`` the
-``mysql`` service is restarted after a change of the configuration. It is
+``mariadb`` service is restarted after a change of the configuration. It is
 important to note that the playbook contains the keyword ``serial: 1``, meaning
 that the configuration is applied one node at a time so that the will never lose
 quorum in the process of applying the new configuration.

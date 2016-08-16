@@ -1,4 +1,4 @@
 ---
 - name: Restart MariaDB Galera cluster
-  service: name=mysql state=restarted
+  service: name=mariadb state=restarted
   when: bootstrapped
