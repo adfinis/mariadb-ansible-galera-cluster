@@ -69,3 +69,25 @@ that the configuration is applied one node at a time so that the will never lose
 quorum in the process of applying the new configuration.
 
     ansible-playbook -i galera.hosts galera_rolling_update.yml
+
+Vagrant support
+---------------
+
+For the live demo during the presentation I've been using Vagrant and with the
+following instructions you can use the Vagrantfile to perform those steps.
+
+### Prerequisites
+
+As we need support for Vagrant private_network we need Guest Additions
+installed in the guest OS. The ``vagrant-vbguest`` plugins automatically
+takes care of this.
+
+    vagrant plugin install vagrant-vbguest
+
+### Vagrant setup
+
+By running `vagrant up` all Ansible tasks in the galera.yml playbook will be
+run. To bootstrap the cluster afterwards a separate run of the
+galera_bootstrap.yml playbook is required.
+
+    PYTHONUNBUFFERED=1 ANSIBLE_FORCE_COLOR=true ANSIBLE_HOST_KEY_CHECKING=false ANSIBLE_SSH_ARGS='-o UserKnownHostsFile=/dev/null -o IdentitiesOnly=yes -o ControlMaster=auto -o ControlPersist=60s' ansible-playbook --connection=ssh --inventory-file=.vagrant/provisioners/ansible/inventory --sudo galera_bootstrap.yml

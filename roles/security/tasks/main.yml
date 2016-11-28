@@ -1,4 +1,7 @@
 ---
+- name: Start and enable firewalld
+  service: name=firewalld state=started enabled=yes
+
 - name: Open firewall for external access to MySQL
   firewalld: service=mysql permanent=true immediate=true state=enabled
 
