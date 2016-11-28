@@ -11,3 +11,6 @@
   with_items:
     - percona-xtrabackup
     - socat
+
+- name: Install MySQL-python
+  yum: name=MySQL-python state=present
