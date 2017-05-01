@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
   (1..CLUSTER_SIZE).each do |box_id|
     config.vm.define "galera-db-#{box_id}" do |box|
       box.vm.hostname = "galera-db-#{box_id}"
-      box.vm.network "private_network", ip: "192.168.47.#{20+box_id}"
+      box.vm.network "private_network", ip: "172.27.47.#{20+box_id}"
       config.vm.network "forwarded_port", guest: 3306, host: 3306,
         auto_correct: true
 
