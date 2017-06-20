@@ -13,19 +13,19 @@ datadir=/var/lib/mysql
 wsrep_provider=/usr/lib64/galera/libgalera_smm.so
 wsrep_cluster_address="gcomm://
 {%- for host in groups['galera_cluster'] -%}
-{{ hostvars[host].ansible_eth1.ipv4.address }}
+{{ hostvars[host].ansible_default_ipv4.address }}
 {%- if not loop.last -%},{%- endif -%}
 {%- endfor -%}"
 wsrep_cluster_name={{ galera_wsrep_cluster_name }}
 wsrep_node_name={{ ansible_hostname }}
-wsrep_node_address={{ ansible_eth1.ipv4.address }}
+wsrep_node_address={{ ansible_default_ipv4.address }}
 binlog_format=row
 default_storage_engine=InnoDB
 innodb_autoinc_lock_mode=2
 
 # SST settings
 wsrep_sst_method=xtrabackup-v2
-wsrep_sst_receive_address={{ ansible_eth1.ipv4.address }}
+wsrep_sst_receive_address={{ ansible_default_ipv4.address }}
 wsrep_sst_auth={{ galera_sst_user }}:{{ galera_sst_pass }}
 # required since 10.1
 wsrep_on=ON
