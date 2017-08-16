@@ -10,7 +10,6 @@
   with_items:
     - 4444/tcp
     - 4567/tcp
-    - 4567/udp
     - 4568/tcp
 
 - name: Disable SELinux
