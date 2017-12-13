@@ -4,3 +4,5 @@ galera_wsrep_cluster_name: ansible_galera_cluster
 bootstrapped: no
 galera_sst_user: galera
 galera_sst_pass: galera
+galera_cluster_interface: eth1
+galera_cluster_interface_fact_var: ansible_{{ galera_cluster_interface }}
