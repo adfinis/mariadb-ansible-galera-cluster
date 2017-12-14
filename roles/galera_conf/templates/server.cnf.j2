@@ -11,11 +11,7 @@ datadir=/var/lib/mysql
 
 # Mandatory settings
 wsrep_provider=/usr/lib64/galera/libgalera_smm.so
-wsrep_cluster_address="gcomm://
-{%- for host in groups['galera_cluster'] -%}
-{{ hostvars[host].ansible_eth1.ipv4.address }}
-{%- if not loop.last -%},{%- endif -%}
-{%- endfor -%}"
+wsrep_cluster_address = "gcomm://{{ groups['galera_cluster'] | map('extract', hostvars, [galera_cluster_interface_fact_var,'ipv4','address']) | list | join(',') }}"
 wsrep_cluster_name={{ galera_wsrep_cluster_name }}
 wsrep_node_name={{ ansible_hostname }}
 wsrep_node_address={{ ansible_eth1.ipv4.address }}

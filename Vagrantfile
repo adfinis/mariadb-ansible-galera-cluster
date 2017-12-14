@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
         box.vm.provision :ansible do |ansible|
           # Disable default limit to connect to all the boxes
           ansible.limit = "all"
-          ansible.sudo = true
+          ansible.become = true
           ansible.playbook = "galera.yml"
           ansible.groups = {
             "galera_cluster" => ["galera-db-1", "galera-db-2", "galera-db-3"]
