@@ -6,6 +6,11 @@ CLUSTER_SIZE = 3
 Vagrant.configure("2") do |config|
   config.vm.box = "centos/7"
 
+  # default to libvirt provider if possible
+  config.vm.provider "libvirt"
+  # fall back to virtualbox if needed
+  config.vm.provider "virtualbox"
+
   (1..CLUSTER_SIZE).each do |box_id|
     config.vm.define "galera-db-#{box_id}" do |box|
       box.vm.hostname = "galera-db-#{box_id}"
