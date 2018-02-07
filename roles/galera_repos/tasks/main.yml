@@ -2,9 +2,3 @@
 - name: Add MariaDB repo
   template: src=yum.repos.d/mariadb.repo.j2 dest=/etc/yum.repos.d/mariadb.repo
     owner=root group=root mode=0644
-
-- name: Add EPEL repo
-  yum:
-    name: epel-release
-    update_cache: yes
-    state: present

@@ -1,4 +1,2 @@
 ---
-mariadb_release: 10.1
-percona_release_version: 0.1
-percona_release_package_version: "{{ percona_release_version }}-3"
+mariadb_release: 10.2

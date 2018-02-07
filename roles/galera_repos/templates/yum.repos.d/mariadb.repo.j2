@@ -1,7 +1,13 @@
-# MariaDB {{ mariadb_release }} CentOS repository list
-# http://mariadb.org/mariadb/repositories/
-[mariadb]
-name = MariaDB
-baseurl = http://yum.mariadb.org/{{ mariadb_release }}/centos7-amd64
-gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
-gpgcheck=1
+[mariadb-main]
+name = MariaDB Server
+baseurl = https://downloads.mariadb.com/MariaDB/mariadb-{{ mariadb_release }}/yum/rhel/$releasever/$basearch
+gpgkey = https://downloads.mariadb.com/MariaDB/RPM-GPG-KEY-MariaDB
+gpgcheck = 1
+enabled = 1
+
+[mariadb-tools]
+name = MariaDB Tools
+baseurl = https://downloads.mariadb.com/Tools/rhel/$releasever/$basearch
+gpgkey = https://downloads.mariadb.com/Tools/MariaDB-Enterprise-GPG-KEY
+gpgcheck = 1
+enabled = 1
