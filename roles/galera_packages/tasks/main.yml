@@ -6,11 +6,19 @@
     - MariaDB-server
     - galera
 
-- name: Install Percona tool packages
+- name: Install percona-xtrabackup packages
   yum: name={{ item }} state=present
   with_items:
     - percona-xtrabackup
     - socat
+  when: "mariadb_release | version_compare('10.2', '<')"
+
+- name: Install percona-xtrabackup-24 packages
+  yum: name={{ item }} state=present
+  with_items:
+    - percona-xtrabackup-24
+    - socat
+  when: "mariadb_release | version_compare('10.2', '>=')"
 
 - name: Install MySQL-python
   yum: name=MySQL-python state=present
