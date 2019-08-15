@@ -10,7 +10,7 @@ reused for Debian or SUSE based distributions.
 Prerequisites
 -------------
 
-The machine from which the playbook is being run needs to have Ansible >= 2.0
+The machine from which the playbook is being run needs to have Ansible >= 2.5
 installed. For detailed information how to obtain current packages for your
 distribution of choice have a look at the
 [Ansible documentation](https://docs.ansible.com/ansible/intro_installation.html).
