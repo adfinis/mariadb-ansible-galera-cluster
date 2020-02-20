@@ -1,3 +1,15 @@
+:warning: This project is no longer being maintained :warning:
+==============================================================
+
+The code in this repository was implemented as a PoC for the MariaDB roadshow
+and is not being maintained anymore.
+
+Feel free to use the bootstrap logic implemtented in the Ansible tasks in your
+own project, but we're not going to implement any changes going forward.
+
+If you find the code in this repository helpful, but want to use it under a
+different license please get in contact with us.
+
 configuration management for MariaDB Galera cluster
 ===================================================
 
